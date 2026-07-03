@@ -10,5 +10,9 @@ describe("Greting", () => {
     expect(screen.getByText("Hello, World!")).toBeInTheDocument();
   });
 
-  it("renders greeting with a name", () => {});
+  it("renders greeting with a name", () => {
+    render(<Greeting name={"Lena"} />);
+    const text = screen.getByText("Hello, Lena!");
+    expect(text).toBeInTheDocument();
+  });
 });
