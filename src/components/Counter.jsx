@@ -6,7 +6,7 @@ function Counter() {
   const [count, setCount] = useState(0);
   return (
     <div>
-      <p>{count}</p>
+      <p data-testid="counter-value">{count}</p>
       <button onClick={() => setCount((prev) => prev + 1)}>Increment</button>
     </div>
   );
