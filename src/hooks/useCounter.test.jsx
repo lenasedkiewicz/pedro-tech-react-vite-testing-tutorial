@@ -1,0 +1,26 @@
+// testing logic; testing ui is elsewhere
+
+import React from "react";
+import { renderHook, screen } from "@testing-library/react";
+import { useCounter } from "./useCounter";
+import { describe, it, expect, act } from "vitest";
+import "@testing-library/jest-dom/vitest";
+
+describe("useCounter", () => {
+  it("initial value is 5", () => {
+    const { result } = renderHook(() => useCounter(5));
+    expect(result.current.count).toBe(5);
+  });
+
+  it("increment", () => {
+    const { result } = renderHook(() => useCounter(0));
+    expect(result.current.count).toBe(0);
+    act(() => {
+      result.current.increment();
+    });
+
+    expect(result.current.count).toBe(1);
+  });
+
+  it("decrement", () => {});
+});
