@@ -1,9 +1,9 @@
 // testing logic; testing ui is elsewhere
 
 import React from "react";
-import { renderHook, screen } from "@testing-library/react";
+import { renderHook, screen, act } from "@testing-library/react";
 import { useCounter } from "./useCounter";
-import { describe, it, expect, act } from "vitest";
+import { describe, it, expect } from "vitest";
 import "@testing-library/jest-dom/vitest";
 
 describe("useCounter", () => {
@@ -20,7 +20,31 @@ describe("useCounter", () => {
     });
 
     expect(result.current.count).toBe(1);
+    act(() => {
+      result.current.increment();
+    });
+
+    expect(result.current.count).toBe(2);
   });
 
-  it("decrement", () => {});
+  it("decrement", () => {
+    const { result } = renderHook(() => useCounter(2));
+    expect(result.current.count).toBe(2);
+    act(() => {
+      result.current.decrement();
+    });
+
+    expect(result.current.count).toBe(1);
+    act(() => {
+      result.current.decrement();
+    });
+
+    expect(result.current.count).toBe(0);
+
+    act(() => {
+      result.current.decrement();
+    });
+
+    expect(result.current.count).toBe(-1);
+  });
 });

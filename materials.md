@@ -1,5 +1,11 @@
 # Links
 
+##
+
+Exercises based on: https://www.youtube.com/watch?v=CxSL0knFxAs
+
+## cheatsheet
+
 https://testing-library.com/docs/react-testing-library/cheatsheet/
 
 ## global
