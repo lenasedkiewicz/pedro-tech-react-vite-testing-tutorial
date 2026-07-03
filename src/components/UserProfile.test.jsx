@@ -6,15 +6,16 @@ import "@testing-library/jest-dom/vitest";
 
 describe("User Profile", () => {
   beforeEach(() => {
-    global.fetch = vi.fn();
+    vi.stubGlobal("fetch", vi.fn());
   });
 
   afterEach(() => {
     vi.resetAllMocks();
+    vi.unstubAllGlobals();
   });
 
   it("Fetches and displays the user data", async () => {
-    global.fetch.mockResolvedValueOnce({
+    vi.mocked(globalThis.fetch).mockResolvedValueOnce({
       json: async () => ({
         id: 4,
         name: "John",
